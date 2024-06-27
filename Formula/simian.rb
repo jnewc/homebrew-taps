@@ -6,7 +6,7 @@ class Simian < Formula
   license "MIT"
 
   def install
-    bin.install ".build/release/simian"
+    bin.install "./simian"
   end
 
   test do

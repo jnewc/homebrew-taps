@@ -1,4 +1,4 @@
-class simian < Formula
+class Simian < Formula
   desc "Tool for managing iOS simulators"
   homepage "https://github.com/jnewc/Simian"
   url "https://github.com/jnewc/Simian"

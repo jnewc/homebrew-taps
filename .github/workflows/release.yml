@@ -1,0 +1,23 @@
+on:
+  workflow_dispatch: 
+    inputs:
+      name:  
+        required: true
+      tag: 
+        required: true
+
+jobs:
+  release:
+    runs-on: ubuntu-22.04
+    steps:
+      - shell: bash
+        run: |
+          RELEASE_VERSION=$1
+          RELEASE_URL="https://github.com/jnewc/Simian/releases/download/${RELEASE_VERSION}/simian-release-${RELEASE_VERSION}.tar.gz"
+
+          # Get release sha256
+          RELEASE_SHA=$(curl -sL $RELEASE_URL | shasum -a 256 | cut -d " " -f 1)
+
+          # Update hash
+          sed -i '' -r -e "s/sha256 \"[0-9a-z]+\"/sha256 \"${RELEASE_SHA}\"/g" -e "s|url \".*\"|url \"${RELEASE_URL}\"|g" Formula/simian.rb
+      - uses: stefanzweifel/git-auto-commit-action@v5

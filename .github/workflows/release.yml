@@ -13,6 +13,9 @@ jobs:
       - uses: actions/checkout@v4
       - shell: bash
         run: |
+          ls -l
+          ls -l Formula
+
           RELEASE_VERSION=$1
           RELEASE_URL="https://github.com/jnewc/Simian/releases/download/${RELEASE_VERSION}/simian-release-${RELEASE_VERSION}.tar.gz"
 

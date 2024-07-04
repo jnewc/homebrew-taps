@@ -1,8 +1,8 @@
 class Simian < Formula
   desc "Tool for managing iOS simulators"
   homepage "https://github.com/jnewc/Simian"
-  url "https://github.com/jnewc/Simian/releases/download/0.1.0/simian-release-0.1.0.tar.gz"
-  sha256 "eb699dcbd6bf32964280dd3aec140a543dd32418fa5552ded0367e9d9fe3e8a8"
+  url "https://github.com/jnewc/Simian/releases/download//simian-release-.tar.gz"
+  sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
   license "MIT"
 
   def install

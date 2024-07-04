@@ -16,8 +16,16 @@ jobs:
           RELEASE_URL="https://github.com/jnewc/Simian/releases/download/${RELEASE_VERSION}/simian-release-${RELEASE_VERSION}.tar.gz"
 
           # Get release sha256
-          RELEASE_SHA=$(curl -sL $RELEASE_URL | shasum -a 256 | cut -d " " -f 1)
+          CURL_FILE="curl_file"
+          SHA_FILE="sha_file"
+          curl -sL "${RELEASE_URL}" >"${CURL_FILE}"
+          shasum -a 256 "${CURL_FILE}" >"${SHA_FILE}"
+          RELEASE_SHA=$(cut -d " " -f 1 "${SHA_FILE}")
 
           # Update hash
           sed -i '' -r -e "s/sha256 \"[0-9a-z]+\"/sha256 \"${RELEASE_SHA}\"/g" -e "s|url \".*\"|url \"${RELEASE_URL}\"|g" Formula/simian.rb
+
+          # Clean up
+          rm "${CURL_FILE}" 
+          rm "${SHA_FILE}"
       - uses: stefanzweifel/git-auto-commit-action@v5

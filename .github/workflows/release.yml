@@ -10,6 +10,7 @@ jobs:
   release:
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v4
       - shell: bash
         run: |
           RELEASE_VERSION=$1
